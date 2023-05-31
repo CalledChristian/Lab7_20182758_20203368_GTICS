@@ -62,7 +62,7 @@ public class SolicitudesController {
         }
     }
 
-    @PutMapping(value = "dengarSolicitud")
+    @PutMapping(value = "denegarSolicitud")
     public ResponseEntity<HashMap<String, Object>> dengarSolicitud(@RequestParam("idSolicitud") String idSolicitud){
         HashMap<String, Object> responseMap = new HashMap<>();
         try {
