@@ -35,7 +35,7 @@ public class SolicitudesController {
                 solicitud.setSolicitud_estado("pendiente");
                 solicitudesRespository.save(solicitud);
                 responseMap.put("Monto Solicitado: ", solicitud.getSolicitud_monto());
-                responseMap.put("id: ", solicitud.getId());
+                responseMap.put("id solicitud ", solicitud.getId());
                 return ResponseEntity.status(HttpStatus.CREATED).body(responseMap);
             }
         }else{
