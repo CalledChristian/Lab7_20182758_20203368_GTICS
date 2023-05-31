@@ -30,7 +30,7 @@ public class PagoController {
         this.pagoRepository = pagoRepository;
     }
 
-    //Listar Usuarios
+    //Listar Pagos
     @GetMapping("/listarPagos")
     public List<Pago> listarPagos() {
 
@@ -40,7 +40,7 @@ public class PagoController {
 
     //Registrar Pago
     @PostMapping(value = "/registrarPago")
-    public ResponseEntity<HashMap<String, Object>> crearUsuario(@RequestBody Pago pago) {
+    public ResponseEntity<HashMap<String, Object>> registrarPago(@RequestBody Pago pago) {
 
         HashMap<String, Object> responseMap = new HashMap<>();
 
