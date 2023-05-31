@@ -34,7 +34,7 @@ public class SolicitudesController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseMap);
     }
 
-    @PutMapping(value = "aprobarsolicitud")
+    @PutMapping(value = "aprobarSolicitud")
     public ResponseEntity<HashMap<String, Object>> aprobarSolicitud(@RequestParam("idSolicitud") String idSolicitud){
         HashMap<String, Object> responseMap = new HashMap<>();
         try {
