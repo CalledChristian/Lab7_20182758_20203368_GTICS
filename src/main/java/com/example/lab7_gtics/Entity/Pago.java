@@ -6,33 +6,35 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "pagos", schema = "mydb", catalog = "")
+@Table(name = "pagos")
 public class Pago {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private int id;
+    private Integer id;
     @Basic
     @Column(name = "monto")
     private Double monto;
-    @Basic
-    @Column(name = "usuarios_id")
-    private int usuariosId;
+    @ManyToOne
+    @JoinColumn(name = "usuarios_id")
+    private Usuario usuarios_id;
     @Basic
     @Column(name = "tipo_pago")
-    private String tipoPago;
+    private String tipo_pago;
     @Basic
     @Column(name = "fecha")
     private Timestamp fecha;
-    @Basic
-    @Column(name = "creditos_id")
-    private int creditosId;
+    @ManyToOne
+    @JoinColumn(name = "creditos_id")
+    private Credito creditos_id;
 
-    public int getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -44,20 +46,20 @@ public class Pago {
         this.monto = monto;
     }
 
-    public int getUsuariosId() {
-        return usuariosId;
+    public Usuario getUsuarios_id() {
+        return usuarios_id;
     }
 
-    public void setUsuariosId(int usuariosId) {
-        this.usuariosId = usuariosId;
+    public void setUsuarios_id(Usuario usuarios_id) {
+        this.usuarios_id = usuarios_id;
     }
 
-    public String getTipoPago() {
-        return tipoPago;
+    public String getTipo_pago() {
+        return tipo_pago;
     }
 
-    public void setTipoPago(String tipoPago) {
-        this.tipoPago = tipoPago;
+    public void setTipo_pago(String tipo_pago) {
+        this.tipo_pago = tipo_pago;
     }
 
     public Timestamp getFecha() {
@@ -68,24 +70,11 @@ public class Pago {
         this.fecha = fecha;
     }
 
-    public int getCreditosId() {
-        return creditosId;
+    public Credito getCreditos_id() {
+        return creditos_id;
     }
 
-    public void setCreditosId(int creditosId) {
-        this.creditosId = creditosId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pago that = (Pago) o;
-        return id == that.id && usuariosId == that.usuariosId && creditosId == that.creditosId && Objects.equals(monto, that.monto) && Objects.equals(tipoPago, that.tipoPago) && Objects.equals(fecha, that.fecha);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, monto, usuariosId, tipoPago, fecha, creditosId);
+    public void setCreditos_id(Credito creditos_id) {
+        this.creditos_id = creditos_id;
     }
 }

@@ -6,18 +6,21 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Table(name = "creditos", schema = "mydb", catalog = "")
+@Table(name = "creditos")
+
 public class Credito {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private int id;
+    private Integer id;
     @Basic
     @Column(name = "monto")
     private String monto;
-    @Basic
-    @Column(name = "usuarios_id")
-    private int usuariosId;
+
+    @ManyToOne
+    @JoinColumn(name = "usuarios_id")
+    private Usuario usuarios_id;
     @Basic
     @Column(name = "fecha")
     private Timestamp fecha;
@@ -25,11 +28,11 @@ public class Credito {
     @Column(name = "interes")
     private Double interes;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,12 +44,12 @@ public class Credito {
         this.monto = monto;
     }
 
-    public int getUsuariosId() {
-        return usuariosId;
+    public Usuario getUsuarios_id() {
+        return usuarios_id;
     }
 
-    public void setUsuariosId(int usuariosId) {
-        this.usuariosId = usuariosId;
+    public void setUsuarios_id(Usuario usuarios_id) {
+        this.usuarios_id = usuarios_id;
     }
 
     public Timestamp getFecha() {
@@ -63,18 +66,5 @@ public class Credito {
 
     public void setInteres(Double interes) {
         this.interes = interes;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Credito that = (Credito) o;
-        return id == that.id && usuariosId == that.usuariosId && Objects.equals(monto, that.monto) && Objects.equals(fecha, that.fecha) && Objects.equals(interes, that.interes);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, monto, usuariosId, fecha, interes);
     }
 }
