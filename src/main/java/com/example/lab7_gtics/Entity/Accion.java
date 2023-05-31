@@ -15,7 +15,7 @@ public class Accion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private int id;
+    private Integer id;
     @Basic
     @Column(name = "monto")
     private Double monto;
