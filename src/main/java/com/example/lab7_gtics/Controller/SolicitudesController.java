@@ -39,7 +39,7 @@ public class SolicitudesController {
                 return ResponseEntity.status(HttpStatus.CREATED).body(responseMap);
             }
         }else{
-            responseMap.put("error","Debe ingresar un id para el usuario");
+            responseMap.put("error","Debe ingresar un id para la solicitud");
         }
         return ResponseEntity.badRequest().body(responseMap);
     }
