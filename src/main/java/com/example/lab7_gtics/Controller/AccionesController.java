@@ -35,7 +35,7 @@ public class AccionesController {
                 return ResponseEntity.status(HttpStatus.CREATED).body(responseMap);
             }
         }else{
-            responseMap.put("error","Debe ingresar un id para el usuario");
+            responseMap.put("error","Debe ingresar un id para la accion");
         }
         return ResponseEntity.badRequest().body(responseMap);
     }
