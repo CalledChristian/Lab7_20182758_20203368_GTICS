@@ -70,7 +70,7 @@ public class PagoController {
         HashMap<String, Object> responseMap = new HashMap<>();
 
         if (request.getMethod().equals("POST")) {
-            responseMap.put("error", "JSON VACIO");
+            responseMap.put("error", "Debe Ingresar Parametros");
         }
         //HTTP 404 BAD REQUEST
         return ResponseEntity.badRequest().body(responseMap);
