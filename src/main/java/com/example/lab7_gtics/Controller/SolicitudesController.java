@@ -25,10 +25,10 @@ public class SolicitudesController {
 
     @PostMapping(value = "/registro")
     public ResponseEntity<HashMap<String, Object>> registroSolicitud(@RequestBody Solicitud solicitud) {
-        System.out.println("entraa");
         HashMap<String, Object> responseMap = new HashMap<>();
-        responseMap.put("Monto Solicitado: ", solicitud.getSolicitud_monto());
+        solicitud.setId(solicitud.getId());
         responseMap.put("id: ", solicitud.getId());
+        responseMap.put("Monto Solicitado: ", solicitud.getSolicitud_monto());
         solicitud.setSolicitud_estado("pendiente");
         solicitudesRespository.save(solicitud);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseMap);
