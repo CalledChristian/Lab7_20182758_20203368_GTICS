@@ -1,5 +1,6 @@
 package com.example.lab7_gtics.Controller;
 
+import com.example.lab7_gtics.Entity.Accion;
 import com.example.lab7_gtics.Entity.Pago;
 import com.example.lab7_gtics.Entity.Solicitud;
 import com.example.lab7_gtics.Repository.SolicitudesRespository;
@@ -26,12 +27,21 @@ public class SolicitudesController {
     @PostMapping(value = "/registro")
     public ResponseEntity<HashMap<String, Object>> registroSolicitud(@RequestBody Solicitud solicitud) {
         HashMap<String, Object> responseMap = new HashMap<>();
-        solicitud.setId(solicitud.getId());
-        responseMap.put("id: ", solicitud.getId());
-        responseMap.put("Monto Solicitado: ", solicitud.getSolicitud_monto());
-        solicitud.setSolicitud_estado("pendiente");
-        solicitudesRespository.save(solicitud);
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseMap);
+        if(solicitud.getId() != null && solicitud.getId() > 0) {
+            Optional<Solicitud> optUsuario = solicitudesRespository.findById(solicitud.getId());
+            if(optUsuario.isPresent()){
+                responseMap.put("error","el id ingresado ya existe");
+            }else{
+                solicitud.setSolicitud_estado("pendiente");
+                solicitudesRespository.save(solicitud);
+                responseMap.put("Monto Solicitado: ", solicitud.getSolicitud_monto());
+                responseMap.put("id: ", solicitud.getId());
+                return ResponseEntity.status(HttpStatus.CREATED).body(responseMap);
+            }
+        }else{
+            responseMap.put("error","Debe ingresar un id para el usuario");
+        }
+        return ResponseEntity.badRequest().body(responseMap);
     }
 
     @PutMapping(value = "aprobarSolicitud")
